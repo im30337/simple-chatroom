@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chatroom</title>
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="./chatroom.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">chatroom</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <!-- 使用者大頭貼&名字 -->
+          <img src="" alt="" id="user-photo">
+          <span id="user-name"></span>
+        </li>
+        <li class="nav-item">
+          <!-- 登入按鈕 -->
+          <button type="button" class="btn btn-success" id="login-btn">登入</button>
+        </li>
+        <li class="nav-item">
+          <!-- 登出按鈕 -->
+          <button type="button" class="btn btn-danger hidden" id="logout-btn">登出</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <!-- 聊天視窗 -->
+        <div id="chat-window">
+          <!-- 聊天訊息的清單 -->
+          <ul id="chats">
+
+          </ul>
+          <!-- 打字狀態 -->
+          <div id="typing-status">
+            <p id="typing" class="hidden">Someone is typing...</p>
+          </div>
+        </div>
+        <!-- 文字輸入框 -->
+        <div class="form-inline">
+          <input type="text" class="form-control" id="message-input" placeholder="你想說的話..">
+          <button type="button" class="btn btn-outline-primary" id="send-btn">
+            <i class="far fa-comment"></i>
+          </button>
+        </div>
+        <!-- 圖片選擇 -->
+        <div class="form-group mt-3">
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="img-input">
+              <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-storage.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAhnJsmCk1xl5CKqc3rdoQX5Si1epMzia8",
+      authDomain: "js-304-terry.firebaseapp.com",
+      databaseURL: "https://js-304-terry.firebaseio.com",
+      projectId: "js-304-terry",
+      storageBucket: "js-304-terry.appspot.com",
+      messagingSenderId: "948600395086"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore();
+    db.settings({
+      timestampsInSnapshots: true
+    });
+    const storage = firebase.storage();
+  </script>
+  <script src="./chatroom.js"></script>
+</body>
+
+</html>
